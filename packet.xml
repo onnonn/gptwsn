@@ -1,0 +1,766 @@
+<packets>
+    <packet name="QJ cmd">
+        <field offset="0"  name="head" value="0x31" type="uint8" endian="little" hide="true"/>
+        <field offset="1"  name="PHONE_ID" type="uint16" endian="little" />
+        <field offset="5"  name="len" type="uint8" endian="little" hide="true"/>
+        <field offset="6"  name="sych head" value="0xAA" type="uint8" endian="little" hide="true"/>
+        <field offset="11"  name="HK_ID" type="uint16" endian="little" />
+        <field offset="13"  name="type" value="0x84" type="uint8" endian="little" hide="true"/>
+        <field offset="16"  name="QJ_NO" type="uint8" endian="little"/>
+    </packet>
+    <packet name="QJ study ack">
+        <field offset="0"  name="head" value="0x31" type="uint8" endian="little" hide="true"/>
+        <field offset="1"  name="PHONE_ID" type="uint16" endian="little" />
+        <field offset="5"  name="len" type="uint8" endian="little" hide="true"/>
+        <field offset="6"  name="sych head" value="0xAA" type="uint8" endian="little" hide="true"/>
+        <field offset="11"  name="HK_ID" type="uint16" endian="little" />
+        <field offset="13"  name="type" value="0x87" type="uint8" endian="little" hide="true"/>
+        <field offset="16"  name="QJ_NO" type="uint8" endian="little"/>
+        <field offset="17"  name="para" type="uint8" endian="little"/>
+    </packet>
+    <packet name="HK cmd">
+        <field offset="0"  name="head" value="0xAA" type="uint8" endian="little" hide="true"/>
+        <field offset="1"  name="len" type="uint8" endian="little" hide="true"/>
+        <field offset="4"  name="BD_key" type="uint8" endian="little"/>
+        <field offset="5"  name="BD_ID" type="uint16" endian="little" />
+        <field offset="7"  name="type" value="0x80" type="uint8" endian="little" hide="true"/>
+        <field offset="9"  name="on_off" type="uint8" endian="little"/>
+    </packet>
+    <packet name="HK state">
+        <field offset="0"  name="head" value="0xAA" type="uint8" endian="little" hide="true"/>
+        <field offset="1"  name="len" type="uint8" endian="little" hide="true"/>
+        <field offset="4"  name="BD_key" type="uint8" endian="little"/>
+        <field offset="5"  name="BD_ID" type="uint16" endian="little" />
+        <field offset="7"  name="type" value="0x81" type="uint8" endian="little" hide="true"/>
+        <field offset="9"  name="on_off" type="uint8" endian="little"/>
+    </packet>
+    <packet name="HK fail">
+        <field offset="0"  name="head" value="0xAA" type="uint8" endian="little" hide="true"/>
+        <field offset="1"  name="len" type="uint8" endian="little" hide="true"/>
+        <field offset="4"  name="BD_key" type="uint8" endian="little"/>
+        <field offset="5"  name="BD_ID" type="uint16" endian="little" />
+        <field offset="7"  name="type" value="0x82" type="uint8" endian="little" hide="true"/>
+        <field offset="9"  name="on_off" type="uint8" endian="little"/>
+    </packet>
+    <packet name="HK study">
+        <field offset="0"  name="head" value="0xAA" type="uint8" endian="little" hide="true"/>
+        <field offset="1"  name="len" type="uint8" endian="little" hide="true"/>
+        <field offset="4"  name="HK_key" type="uint8" endian="little"/>
+        <field offset="5"  name="HK_ID" type="uint16" endian="little" />
+        <field offset="7"  name="type" value="0x8c" type="uint8" endian="little" hide="true"/>
+    </packet>
+    <packet name="HK study ack">
+        <field offset="0"  name="head" value="0xAA" type="uint8" endian="little" hide="true"/>
+        <field offset="1"  name="len" type="uint8" endian="little" hide="true"/>
+        <field offset="4"  name="HK_key" type="uint8" endian="little"/>
+        <field offset="5"  name="HK_ID" type="uint16" endian="little" />
+        <field offset="7"  name="type" value="0x8d" type="uint8" endian="little" hide="true"/>
+        <field offset="10"  name="BD_key" type="uint8" endian="little"/>
+        <field offset="11"  name="BD_ID" type="uint16" endian="little" />
+        <field offset="13"  name="on_off" type="uint8" endian="little"/>
+        <field offset="14"  name="state" type="uint8" endian="little"/>
+    </packet>
+    <packet name="HK Error">
+        <field offset="0"  name="head" value="0xEE" type="uint8" endian="little" hide="true"/>
+        <field offset="1"  name="len" type="uint8" endian="little" hide="true"/>
+        <field offset="5"  name="SB_ID" type="uint16" endian="little" />
+        <field offset="7"  name="error" type="uint8" endian="little"/>
+        <field offset="8"  name="lineno" type="uint16" endian="big" />
+    </packet>
+    <packet name="hbeat data">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x21" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="role" type="uint8" endian="little" />
+        <field offset="20" name="seq" type="uint8" endian="little" />
+        <field offset="21" name="len" type="uint8" endian="little" />
+    </packet>
+    <packet name="hbeat ack">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <field offset="8"  name="erecver" type="uint16" endian="little" />
+        <field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <field offset="16" name="fin" type="bits[0:0]" endian="little" />
+        <field offset="16" name="part" type="bits[3:1]" endian="little" />
+        <field offset="18" name="type" value="0x02" type="uint8" endian="little" hide="true"/>
+    </packet>
+    <packet name="route req">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <field offset="4"  name="channel" value="0x85 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="8"  name="seqno" type="uint16" endian="little" />
+        <field offset="10" name="origin" type="uint16" endian="little" />
+        <field offset="12" name="hops" type="uint16" endian="little" />
+        <field offset="14" name="dest" type="uint16" endian="little" />
+        <field offset="16" name="rreq_id" type="uint8" endian="little" />
+    </packet>
+    <packet name="route rep">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <field offset="4"  name="channel" value="0x86 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="10" name="rreq_id" type="uint8" endian="little" />
+        <field offset="11" name="hops" type="uint8" endian="little" />
+        <field offset="12" name="dest" type="uint16" endian="little" />
+        <field offset="14" name="origin" type="uint16" endian="little" />
+    </packet>
+    <packet name="mesh cmd">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <field offset="8"  name="erecver" type="uint16" endian="little" />
+        <field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <field offset="16" name="fin" type="bits[0:0]" endian="little" />
+        <field offset="16" name="part" type="bits[3:1]" endian="little" />
+        <field offset="18" name="type" value="0x03" type="uint8" endian="little" hide="true"/>
+    </packet>
+    <packet name="mesh data">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <field offset="8"  name="erecver" type="uint16" endian="little" />
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <field offset="16" name="fin" type="bits[0:0]" endian="little" />
+        <field offset="16" name="part" type="bits[3:1]" endian="little" />
+        <field offset="18" name="type" value="0x31" type="uint8" endian="little" hide="true"/>
+    </packet>
+    <packet name="mag data">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <field offset="8"  name="erecver" type="uint16" endian="little" />
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <field offset="16" name="fin" type="bits[0:0]" endian="little" />
+        <field offset="16" name="part" type="bits[3:1]" endian="little" />
+        <field offset="18" name="type" value="0x32" type="uint8" endian="little" hide="true"/>
+    </packet>
+    <packet name="nbrs info">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <!--<field offset="15" name="seqno" type="uint8" endian="little" />-->
+        <field offset="16" name="fin" type="bits[0:0]" endian="little" />
+        <field offset="16" name="part" type="bits[3:1]" endian="little" />
+        <!--<field offset="16" name="partn" type="bits[6:4]" endian="little" />-->
+        <field offset="17" name="len" type="uint8" endian="little" />
+        <field offset="18" name="type" value="0x13" type="uint8" endian="little" hide="true"/>
+        <field offset="21" name="num" type="uint8" endian="little" />
+    </packet>
+    <packet name="route info">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <!--<field offset="15" name="seqno" type="uint8" endian="little" />-->
+        <field offset="16" name="fin" type="bits[0:0]" endian="little" />
+        <field offset="16" name="part" type="bits[3:1]" endian="little" />
+        <!--<field offset="16" name="partn" type="bits[6:4]" endian="little" />-->
+        <field offset="17" name="len" type="uint8" endian="little" />
+        <field offset="18" name="type" value="0x15" type="uint8" endian="little" hide="true"/>
+        <field offset="21" name="num" type="uint8" endian="little" />
+    </packet>
+    <packet name="join">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <field offset="46" name="commit" type="char[8]" endian="big" />
+        <!-- for 6 bytes long address -->
+        <!--<field offset="20" name="mac" type="byte[6]" endian="big" />-->
+        <!--<field offset="26" name="role" type="uint8" endian="little" />-->
+        <!--<field offset="27" name="devtype" type="uint8" endian="little" />-->
+        <!--<field offset="28" name="name" type="char[16]" endian="big" />-->
+        <!--<field offset="44" name="commit" type="char[8]" endian="big" />-->
+        <!-- for 8 bytes long address -->
+        <field offset="20" name="mac" type="byte[8]" endian="big" />
+        <field offset="28" name="role" type="uint8" endian="little" />
+        <field offset="29" name="devtype" type="uint8" endian="little" />
+        <field offset="30" name="name" type="char[16]" endian="big" />
+        <field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <!--<field offset="15" name="seqno" type="uint8" endian="little" />-->
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x11" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="state" value="0x04" type="uint8" endian="little" hide="true"/>
+    </packet>
+    <packet name="accept">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="esender" type="uint16" endian="little" />-->
+        <field offset="8"  name="erecver" type="uint16" endian="little" />
+        <field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <field offset="16" name="fin" type="bits[0:0]" endian="little" />
+        <field offset="16" name="part" type="bits[3:1]" endian="little" />
+        <field offset="18" name="type" value="0x01" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="op" value="0x04" type="uint8" endian="little" hide="true"/>
+    </packet>
+    <packet name="reject">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <field offset="8"  name="erecver" type="uint16" endian="little" />
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <!--<field offset="15" name="seqno" type="uint8" endian="little" />-->
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x01" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="op" value="0x05" type="uint8" endian="little" hide="true"/>
+        <field offset="21" name="reason" type="uint8" endian="little"/>
+        <field offset="22" name="macaddr" type="byte[8]" endian="big"/>
+    </packet>
+    <packet name="setsaddr">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="esender" type="uint16" endian="little" />-->
+        <field offset="8"  name="erecver" type="uint16" endian="little" />
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <!--<field offset="15" name="seqno" type="uint8" endian="little" />-->
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x01" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="op" value="0x13" type="uint8" endian="little" hide="true"/>
+        <field offset="29" name="saddr" type="uint16" endian="big"/>
+        <field offset="21" name="laddr" type="byte[8]" endian="big"/>
+    </packet>
+    <packet name="base cmd">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <field offset="8"  name="erecver" type="uint16" endian="little" />
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <!--<field offset="15" name="seqno" type="uint8" endian="little" />-->
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x01" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="op" type="uint8" endian="little" />
+        <field offset="21" name="arg" type="byte[14]" endian="big"/>
+    </packet>
+    <packet name="ident">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <!-- for 6 bytes long address -->
+        <!--<field offset="27" name="name" type="char[16]" endian="big" />-->
+        <!--<field offset="43" name="commit" type="char[8]" endian="big" />-->
+        <!-- for 8 bytes long address -->
+        <field offset="29" name="name" type="char[16]" endian="big" />
+        <field offset="45" name="commit" type="char[8]" endian="big" />
+        <field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <field offset="16" name="fin" type="bits[0:0]" endian="little" />
+        <field offset="16" name="part" type="bits[3:1]" endian="little" />
+        <field offset="18" name="type" value="0x11" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="state" value="0x02" type="uint8" endian="little" hide="true"/>
+    </packet>
+    <packet name="metadata">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <!--<field offset="15" name="seqno" type="uint8" endian="little" />
+        <field offset="16" name="fin" type="bits[0:0]" endian="little" />
+        <field offset="16" name="part" type="bits[3:1]" endian="little" />
+        <field offset="16" name="partn" type="bits[6:4]" endian="little" />-->
+        <field offset="18" name="type" value="0x12" type="uint8" endian="little" hide="true"/>
+        <field offset="21" name="name" type="char[16]" endian="big" />
+        <!--<field offset="37" name="verno" type="uint32" endian="little" />-->
+        <field offset="41" name="commit" type="char[8]" endian="big" />
+        <field offset="49" name="build" type="char[8]" endian="big" />
+        <!--<field offset="49" name="build" type="bcd" endian="big" />-->
+        <field offset="57" name="otaver" type="uint8" endian="little" />
+    </packet>
+    <packet name="mesh icmp">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x87 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="8"  name="sender" type="uint16" endian="little" />-->
+        <field offset="10" name="code" type="uint8" endian="little" />
+        <field offset="11" name="orig" type="uint16" endian="little" />
+        <field offset="13" name="dest" type="uint16" endian="little" />
+        <field offset="15" name="seq" type="uint8" endian="little" />
+        <field offset="16" name="part" type="uint8" endian="little" />
+    </packet>
+    <!--00 00 01 00 88 00 01 01 00 06 7F 0A 1E 00 03-->
+    <packet name="trickle">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x88 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="seqno" type="uint8" endian="little"/>
+        <!--<field offset="7"  name="sender" type="uint16" endian="little"/>-->
+        <field offset="11"  name="rfChan" type="uint8" endian="little"/>
+        <field offset="12" name="rfPower" type="uint8" endian="little" format="0x%02X"/>
+        <!--<field offset="13" name="nwkRexmit" type="uint8" endian="little"/>-->
+        <field offset="14" name="hbeatT" type="uint16" endian="big"/>
+        <field offset="16" name="sampleT" type="uint16" endian="big"/>
+        <!--<field offset="18" name="reportT" type="uint16" endian="big"/>-->
+        <field offset="20" name="checkT" type="uint16" endian="big"/>
+        <field offset="22" name="ledMode" type="uint8" endian="big"/>
+    </packet>
+    <packet name="flooding">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x8c 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="seqno" type="uint8" endian="little"/>
+        <!--<field offset="7"  name="sender" type="uint16" endian="little"/>-->
+    </packet>
+    <packet name="deluge report">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x37 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="10"  name="cmd" value="0x07" type="bits[3:0]" endian="little" hide="true"/>
+        <field offset="10"  name="mode" type="bits[7:4]" endian="little" hide="true"/>
+        <field offset="11"  name="event" type="uint8" endian="little" />
+    </packet>
+    <packet name="deluge summary">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x38 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="8"  name="cmd" value="0x01" type="bits[3:0]" endian="little" hide="true"/>
+        <field offset="8"  name="mode" type="bits[7:4]" endian="little" hide="true"/>
+        <field offset="9"  name="object" type="uint8" endian="little" />
+        <field offset="10" name="version" type="uint8" endian="little" />
+        <field offset="11" name="avail" type="uint8" endian="little" />
+    </packet>
+    <packet name="deluge request">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x37 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="10"  name="cmd" value="0x02" type="bits[3:0]" endian="little" hide="true"/>
+        <field offset="10"  name="mode" type="bits[7:4]" endian="little" hide="true"/>
+        <field offset="11" name="object" type="uint8" endian="little" />
+        <field offset="12" name="version" type="uint8" endian="little" />
+        <field offset="13" name="page" type="uint8" endian="little" />
+        <field offset="14" name="reqset" type="uint8" endian="little" format="0x%02X" />
+    </packet>
+    <packet name="deluge request ack">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x37 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="10" name="cmd" value="0x12" type="uint8" endian="little" hide="true"/>
+        <field offset="11" name="object" type="uint8" endian="little" />
+        <field offset="12" name="version" type="uint8" endian="little" />
+        <field offset="13" name="page" type="uint8" endian="little" />
+        <field offset="14" name="reqset" type="uint8" endian="little" format="0x%02X" />
+    </packet>
+    <packet name="deluge packet">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x38 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="8"  name="cmd" value="0x03" type="bits[3:0]" endian="little" hide="true"/>
+        <field offset="8"  name="mode" type="bits[7:4]" endian="little" hide="true"/>
+        <field offset="9"  name="object" type="uint8" endian="little" />
+        <field offset="10" name="version" type="uint8" endian="little" />
+        <field offset="11" name="page" type="uint8" endian="little" />
+        <field offset="12" name="pktnum" type="uint8" endian="little" />
+        <field offset="13" name="pageaddr" type="uint32" endian="big" format="0x%06X"/>
+        <field offset="17" name="crc" type="uint16" endian="little" format="0x%04X" />
+    </packet>
+    <packet name="deluge profile">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x38 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="8"  name="cmd" value="0x04" type="bits[3:0]" endian="little" hide="true"/>
+        <field offset="8"  name="mode" type="bits[7:4]" endian="little" hide="true"/>
+        <field offset="9"  name="object" type="uint8" endian="little" />
+        <field offset="10" name="version" type="uint8" endian="little" />
+        <field offset="11" name="npages" type="uint8" endian="little" />
+        <field offset="12"  name="dest" type="uint16" endian="little" />
+    </packet>
+    <!--00 00 01 00 84 00 01 00 02 00 08 00 00 08 00 03 11 05 06 45 02 00 00 01-->
+    <packet name="deluge command">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="esender" type="uint16" endian="little" />-->
+        <field offset="8"  name="erecver" type="uint16" endian="little" />
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <!--<field offset="15" name="seqno" type="uint8" endian="little" />-->
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x06" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="cmd" value="0x05" type="bits[3:0]" endian="little" hide="true"/>
+        <field offset="19" name="mode" type="bits[7:4]" endian="little" hide="true"/>
+        <field offset="20" name="object" type="uint8" endian="little" />
+        <field offset="21" name="version" type="uint8" endian="little" />
+        <field offset="22" name="npages" type="uint8" endian="little" />
+        <field offset="23" name="subtype" type="uint8" endian="little" />
+    </packet>
+    <packet name="deluge mhop report">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <!--<field offset="15" name="seqno" type="uint8" endian="little" />-->
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x61" type="uint8" endian="little" hide="true"/>
+        <field offset="19"  name="cmd" value="0x07" type="bits[3:0]" endian="little" hide="true"/>
+        <field offset="19"  name="mode" type="bits[7:4]" endian="little" hide="true"/>
+        <field offset="20"  name="event" type="uint8" endian="little" />
+        <field offset="21"  name="addr" type="uint16" endian="little" />
+        <field offset="23"  name="done" type="uint8" endian="little" />
+        <field offset="24"  name="total" type="uint8" endian="little" />
+    </packet>
+    <packet name="deluge warn">
+        <!--<field offset="0"  name="to" type="uint16" endian="little" />-->
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x38 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="8"  name="cmd" value="0x06" type="bits[3:0]" endian="little" hide="true"/>
+        <field offset="8"  name="mode" type="bits[7:4]" endian="little" hide="true"/>
+        <field offset="9"  name="code" type="uint8" endian="little" />
+        <field offset="10" name="line" type="uint16" endian="little" />
+    </packet>
+    <!--<packet name="mesh test">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <field offset="2"  name="from" type="uint16" endian="little" />
+        <field offset="4"  name="channel" value="0x90 0x00" type="uint16" endian="little" hide="true"/>-->
+        <!--<field offset="6"  name="esender" type="uint16" endian="little" />-->
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <!--<field offset="15" name="seqno" type="uint8" endian="little" />
+        <field offset="16" name="acked" type="uint8" endian="little" />
+        <field offset="17" name="total" type="uint8" endian="little" />
+        <field offset="18" name="error" type="uint8" endian="little" />
+    </packet>-->
+    <packet name="unicast test">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x90 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="esender" type="uint16" endian="little" />-->
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="10" name="seqno" type="uint8" endian="little" />
+        <field offset="11" name="acked" type="uint8" endian="little" />
+        <field offset="12" name="total" type="uint8" endian="little" />
+        <field offset="13" name="error" type="uint8" endian="little" />
+    </packet>
+    <packet name="fhss req">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x97 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="sender" type="uint16" endian="little" />
+        <field offset="8"  name="type" type="uint8" value="0x01" endian="little" hide="true"/>
+        <field offset="9"  name="seqno" type="uint8" endian="little" />
+    </packet>
+    <packet name="fhss ack">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x97 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="sender" type="uint16" endian="little" />
+        <field offset="8"  name="type" type="uint8" value="0x02" endian="little" hide="true"/>
+        <field offset="9"  name="seqno" type="uint8" endian="little" />
+        <field offset="10" name="recver" type="uint16" endian="little" />
+    </packet>
+    <packet name="trace">
+        <!--<field offset="0"  name="to" type="uint16" endian="little" />-->
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x98 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="sender" type="uint16" endian="little" />
+        <field offset="8"  name="seqno" type="uint8" endian="little" />
+        <field offset="9"  name="rexmit" type="uint8" endian="little" />
+        <field offset="10" name="total" type="uint8" endian="little" />
+        <field offset="11" name="count" type="uint8" endian="little" />
+        <field offset="12" name="entries" type="byte" endian="little" length="40" />
+    </packet>
+    <packet name="log error">
+        <!--<field offset="0"  name="to" type="uint16" endian="little" />-->
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x99 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="sender" type="uint16" endian="little" />-->
+        <field offset="8"  name="level" value="0x01" type="uint8" endian="little" hide="true"/>
+        <field offset="9"  name="errno" type="uint8" endian="little" />
+        <field offset="10" name="lineno" type="uint16" endian="big" />
+        <field offset="12" name="fname" type="char[20]" endian="little" />
+        <field offset="32" name="argdata" type="byte[20]" endian="little" />
+        <!--<field offset="52" name="seqno" type="uint16" endian="big" />-->
+        <!--<field offset="54" name="drop" type="uint16" endian="big" />-->
+        <!--<field offset="56" name="retry" type="uint16" endian="big" />-->
+    </packet>
+    <packet name="log warn">
+        <!--<field offset="0"  name="to" type="uint16" endian="little" />-->
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x99 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="sender" type="uint16" endian="little" />-->
+        <field offset="8"  name="level" value="0x02" type="uint8" endian="little" hide="true"/>
+        <field offset="9"  name="errno" type="uint8" endian="little" />
+        <field offset="10" name="lineno" type="uint16" endian="big" />
+        <field offset="12" name="fname" type="char[20]" endian="little" />
+        <field offset="32" name="argdata" type="byte[20]" endian="little" />
+        <!--<field offset="52" name="seqno" type="uint16" endian="big" />-->
+        <!--<field offset="54" name="drop" type="uint16" endian="big" />-->
+        <!--<field offset="56" name="retry" type="uint16" endian="big" />-->
+    </packet>
+    <packet name="log info">
+        <!--<field offset="0"  name="to" type="uint16" endian="little" />-->
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x99 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="sender" type="uint16" endian="little" />-->
+        <field offset="8"  name="level" value="0x03" type="uint8" endian="little" hide="true"/>
+        <field offset="9"  name="errno" type="uint8" endian="little" />
+        <field offset="10" name="lineno" type="uint16" endian="big" />
+        <field offset="12" name="fname" type="char[20]" endian="little" />
+        <!--<field offset="32" name="argdata" type="byte[20]" endian="little" />-->
+        <!--<field offset="52" name="seqno" type="uint16" endian="big" />-->
+        <!--<field offset="54" name="drop" type="uint16" endian="big" />-->
+        <!--<field offset="56" name="retry" type="uint16" endian="big" />-->
+    </packet>
+    <packet name="file name">
+        <!--<field offset="0"  name="to" type="uint16" endian="little" />-->
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="esender" type="uint16" endian="little" />-->
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x20" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="subtype" value="0x01" type="uint8" endian="little" hide="true"/>
+        <field offset="23" name="name" type="char[32]" endian="big"/>
+    </packet>
+    <packet name="file len">
+        <!--<field offset="0"  name="to" type="uint16" endian="little" />-->
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="esender" type="uint16" endian="little" />-->
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x20" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="subtype" value="0x02" type="uint8" endian="little" hide="true"/>
+        <field offset="23" name="length" type="uint32" endian="little"/>
+    </packet>
+    <packet name="file data">
+        <!--<field offset="0"  name="to" type="uint16" endian="little" />-->
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="esender" type="uint16" endian="little" />-->
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x20" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="subtype" value="0x03" type="uint8" endian="little" hide="true"/>
+        <field offset="21" name="dataseq" type="uint16" endian="little"/>
+    </packet>
+    <packet name="file md5">
+        <!--<field offset="0"  name="to" type="uint16" endian="little" />-->
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="esender" type="uint16" endian="little" />-->
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x20" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="subtype" value="0x04" type="uint8" endian="little" hide="true"/>
+        <field offset="23" name="md5" type="byte[16]" endian="big"/>
+    </packet>
+    <packet name="uart data">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <field offset="16" name="fin" type="bits[0:0]" endian="little" />
+        <field offset="16" name="part" type="bits[3:1]" endian="little" />
+        <field offset="18" name="type" value="0x41" type="uint8" endian="little" hide="true"/>
+        <field offset="17" name="len" type="uint8" endian="little" />
+    </packet>
+    <packet name="uart cmd">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <!--<field offset="6"  name="esender" type="uint16" endian="little" />-->
+        <field offset="8"  name="erecver" type="uint16" endian="little" />
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x04" type="uint8" endian="little" hide="true"/>
+        <field offset="17" name="len" type="uint8" endian="little" />
+    </packet>
+    <packet name="prodtest data">
+        <field offset="0" name="to" type="uint16" endian="little" />
+        <field offset="2" name="from" type="uint16" endian="little" />
+        <field offset="4" name="channel" value="0xF1 0x00" type="uint16" endian="little" hide="true" />
+        <field offset="14" name="sent" type="uint8" endian="little" />
+        <field offset="15" name="acked" type="uint8" endian="little" />
+    </packet>
+    <packet name="prodtest ack">
+        <field offset="0" name="to" type="uint16" endian="little" />
+        <field offset="2" name="from" type="uint16" endian="little" />
+        <field offset="4" name="channel" value="0xF2 0x00" type="uint16" endian="little" hide="true" />
+        <field offset="14" name="seqno" type="uint8" endian="little" />
+    </packet>
+    <packet name="test data">
+        <field offset="0" name="to" type="uint16" endian="little" />
+        <field offset="2" name="from" type="uint16" endian="little" />
+        <field offset="4" name="channel" value="0x93 0x00" type="uint16" endian="little" hide="true" />
+        <field offset="6" name="seqno" type="uint16" endian="big" />
+        <field offset="8" name="sent" type="uint16" endian="big" />
+        <field offset="10" name="acked" type="uint16" endian="big" />
+    </packet>
+    <packet name="test ack">
+        <field offset="0" name="to" type="uint16" endian="little" />
+        <field offset="2" name="from" type="uint16" endian="little" />
+        <field offset="4" name="channel" value="0x94 0x00" type="uint16" endian="little" hide="true" />
+        <field offset="6" name="seqno" type="uint16" endian="big" />
+    </packet>
+    <packet name="hmc5983">
+        <!--<field offset="0"  name="to" type="uint16" endian="little" />-->
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4" name="channel" value="0x91 0x00" type="uint16" endian="little" hide="true" />
+        <field offset="6" name="seqno" type="uint8" endian="big" />
+        <field offset="7" name="magX" type="int16" endian="big" />
+        <field offset="9" name="magY" type="int16" endian="big" />
+        <field offset="11" name="magZ" type="int16" endian="big" />
+    </packet>
+    <packet name="sensor bh1750">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <field offset="8"  name="erecver" type="uint16" endian="little" />
+        <!--<field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>-->
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <field offset="15" name="seqno" type="uint8" endian="little" />
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0x51" type="uint8" endian="little" hide="true"/>
+        <field offset="19" name="light" type="uint16" endian="big" />
+    </packet>
+    <packet name="time test">
+        <field offset="0" name="to" type="uint16" endian="little" />
+        <field offset="2" name="from" type="uint16" endian="little" />
+        <field offset="4" name="channel" value="0x44 0x00" type="uint16" endian="little" hide="true" />
+        <field offset="6" name="seqno" type="uint8" endian="big" />
+        <field offset="7" name="ticks" type="uint32" endian="big" />
+        <field offset="11" name="second" type="uint32" endian="big" />
+    </packet>
+    <packet name="app ack">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <!--<field offset="15" name="seqno" type="uint8" endian="little" />-->
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0xAC" type="uint8" endian="little" hide="true"/>
+        <!--<field offset="19" name="orig" type="uint16" endian="little"/>-->
+        <field offset="19" name="result"  type="uint8" endian="little" format="%02X"/>
+        <field offset="20" name="msg"  type="uint8" endian="little" format="%02X"/>
+        <field offset="21" name="sub"  type="uint8" endian="little" format="%02X"/>
+    </packet>
+    <packet name="error">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x84 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <!--<field offset="8"  name="erecver" type="uint16" endian="little" />-->
+        <field offset="10" name="hops" type="bits[7:3]" endian="little" length="1"/>
+        <!--<field offset="11" name="recver" type="uint16" endian="little" />-->
+        <!--<field offset="13" name="sender" type="uint16" endian="little" />-->
+        <!--<field offset="15" name="seqno" type="uint8" endian="little" />-->
+        <!--<field offset="16" name="fin" type="bits[0:0]" endian="little" />-->
+        <!--<field offset="16" name="part" type="bits[3:1]" endian="little" />-->
+        <field offset="18" name="type" value="0xE0" type="uint8" endian="little" hide="true"/>
+    </packet>
+    <packet name="selftest">
+        <field offset="0"  name="to" type="uint16" endian="little" />
+        <!--<field offset="2"  name="from" type="uint16" endian="little" />-->
+        <field offset="4"  name="channel" value="0x89 0x00" type="uint16" endian="little" hide="true"/>
+        <field offset="6"  name="esender" type="uint16" endian="little" />
+        <field offset="8"  name="erecver" type="uint16" endian="little" />
+    </packet>
+</packets>
